@@ -513,7 +513,7 @@ void cn_slow_hash<MEMORY,ITER,VERSION>::software_hash(const void* in, size_t len
 			int32_t d  = idx.as_dword(2);
 			int64_t q = n / (d | 5);
 			idx.as_qword(0) = n ^ q;
-			idx = scratchpad_ptr((~d) ^ q);
+			idx = scratchpad_ptr(~(d ^ q));
 		}
 		if(VERSION == 1)
 		{
@@ -546,7 +546,7 @@ void cn_slow_hash<MEMORY,ITER,VERSION>::software_hash(const void* in, size_t len
 			int32_t d  = idx.as_dword(2); // read bytes 8 - 11
 			int64_t q = n / (d | 5);
 			idx.as_qword(0) = n ^ q;
-			idx = scratchpad_ptr((~d) ^ q);
+			idx = scratchpad_ptr(~(d ^ q));
 		}
 		else if(VERSION == 1)
 		{
